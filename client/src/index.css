@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; --app-font: "Inter", ui-sans-serif, system-ui; }
+
+html, body, #root { height: 100%; }
+/* App font uses CSS variable so it can be switched at runtime by toggling a class on <html> */
+body {
+  font-family: var(--app-font);
+  @apply bg-slate-950 text-slate-100;
+  background-image:
+    radial-gradient(at 20% 0%, rgba(139,92,246,0.18) 0, transparent 50%),
+    radial-gradient(at 80% 100%, rgba(59,130,246,0.15) 0, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Font helper classes to toggle global font. Add to <html> element: e.g. <html class="font-inter"> */
+.font-inter { --app-font: "Inter", ui-sans-serif, system-ui; }
+.font-georgia { --app-font: Georgia, serif; }
+.font-mono { --app-font: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; }
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium
+           bg-gradient-to-r from-violet-500 to-indigo-500 text-white shadow-lg shadow-violet-500/30
+           hover:from-violet-600 hover:to-indigo-600 transition active:scale-95;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg text-slate-300
+           hover:bg-white/10 hover:text-white transition;
+  }
+  .input {
+    @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10
+           text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500/60;
+  }
+}
+
+/* TipTap */
+.ProseMirror { @apply min-h-[260px] outline-none px-4 py-3 text-slate-100 leading-relaxed; }
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply text-slate-500 float-left h-0 pointer-events-none;
+}
+.ProseMirror h1 { @apply text-3xl font-bold my-3; }
+.ProseMirror h2 { @apply text-2xl font-semibold my-2; }
+.ProseMirror h3 { @apply text-xl font-semibold my-2; }
+.ProseMirror ul { @apply list-disc pl-6; }
+.ProseMirror ol { @apply list-decimal pl-6; }
+.ProseMirror img { @apply rounded-xl my-3 max-h-80; }
+.ProseMirror mark { @apply bg-yellow-300/40 rounded px-1; }
+
+/* Note color variants (light pastel cards even in dark) */
+.note-default { @apply bg-white/5; }
+.note-pink    { background: linear-gradient(135deg,#fde2e4,#f9c6cb); color:#1f2937; }
+.note-blue    { background: linear-gradient(135deg,#cdeffd,#a5dbf7); color:#1f2937; }
+.note-purple  { background: linear-gradient(135deg,#e7dffc,#cdbef7); color:#1f2937; }
+.note-yellow  { background: linear-gradient(135deg,#fff5b8,#ffe98a); color:#1f2937; }
+.note-green   { background: linear-gradient(135deg,#d0f4de,#a8ecc1); color:#1f2937; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 8px; }

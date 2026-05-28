@@ -1,0 +1,11 @@
+{
+  "name": "glow-pad-app-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "start": "node scripts/dev.js"
+  }
+}
